@@ -29,22 +29,17 @@ namespace InterviewPrep  //helps you organize classes, interfaces, and other typ
             _messageService.SendMessage(message);  //use the message service to send a notification
         }
     }
-    
+
     // Adding the Program class with a Main method as an entry point
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main()
         {
-            // Create an instance of EmailMessage
-            IMessageService emailService = new EmailMessage();
-            
-            // Create a Notification instance with the EmailMessage service
-            Notification notification = new Notification(emailService);
-            
-            // Use the Notification to send a message
-            notification.Notify("Hello from InterviewPrep project!");
-            
-            Console.WriteLine("Program executed successfully.");
+            // Manual DI for demo; in .NET Core, use builder.Services.AddTransient<IMessageService, EmailService>();
+            IMessageService service = new EmailMessage();
+            Notification notifier = new Notification(service);
+            notifier.Notify("Hello via DI!");
         }
     }
+
 }
