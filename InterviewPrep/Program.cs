@@ -35,7 +35,7 @@ namespace InterviewPrep  //helps you organize classes, interfaces, and other typ
     {
         static void Main()
         {
-            // Manual DI for demo; in .NET Core, use builder.Services.AddTransient<IMessageService, EmailService>();
+            
             IMessageService service = new EmailMessage();
             Notification notifier = new Notification(service);
             notifier.Notify("Hello via DI!");
